@@ -1,6 +1,6 @@
 import "./App.css";
-import { Rentals } from "./Components/Rentals/Rentals";
-import { AddHouse } from "./Components/AddHouse/AddHouse";
+import { Rentals } from "./app/src/Components/Rentals/Rentals";
+import { AddHouse } from "./app/src/Components/AddHouse/AddHouse";
 
 function App() {
   return (

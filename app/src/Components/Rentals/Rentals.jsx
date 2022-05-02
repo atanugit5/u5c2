@@ -1,6 +1,23 @@
+import { useEffect, useState } from "react";
 import "./Rentals.css";
 
 export const Rentals = () => {
+  const [data, setData] = useState([]);
+
+  const getData = async () => {
+    try {
+      let res = await fetch("http://localhost:8080/Rentalhouse");
+      let data = await res.json();
+      setData(data);
+    } catch (err) {
+      console.log("error:", err);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div className="rentalContainer">
       <div className="sortingButtons">
@@ -29,7 +46,7 @@ export const Rentals = () => {
           </tr>
         </thead>
         <tbody>
-          {[].map((house, index) => {
+          {data.map((house, index) => {
             return (
               <tr key={house.id} className="houseDetails">
                 <td className="houseId">{house.id}</td>
@@ -40,6 +57,7 @@ export const Rentals = () => {
                 <td className="rent">{house.rent}</td>
                 <td className="preferredTenants">
                   {/* Show text Both or Bachelors or Married based on values */}
+                  {house.preferredTenants}
                 </td>
                 <td className="houseImage">
                   <img src={house.image} alt="house" />
